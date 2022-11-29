@@ -1,0 +1,6 @@
+{
+	"appId": "com.liquor.pos",
+	"appName": "L&B",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
