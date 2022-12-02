@@ -3,3 +3,72 @@
 :host {
   height: 100%;
 }
+
+
+@media (max-width: 740px) and (max-height: 819px) {
+  #kt_login {
+    background-size: 32% 52%, 22% 17%;
+  }
+
+  .f-center {
+    margin-top: 5% !important;
+  }
+}
+
+@media (max-width: 1100px) and (min-height: 650px) {
+  #kt_login {
+    background-size: 36% 49%,23% 16% ,29% 52%;
+  }
+
+  .f-center {
+    margin-top: 27% !important;
+  }
+}
+
+@media (min-width: 741px) and (max-width: 1009px) {
+  #kt_login {
+    background-size: 33% 50%,21% 17%,27% 53%;
+  }
+  .f-center{
+    margin-top: 7%;
+  }
+}
+@media (min-width: 1460px) and (max-width: 1540px) {
+  #kt_login {
+    background-size: 29% 52%,19% 17%,26% 54%;
+  }
+  .f-center{
+    margin-top: 21%;
+  }
+}
+
+@media (min-width: 1460px) and (max-width: 1540px) {
+  #kt_login {
+    background-size: 29% 52%,19% 17%,26% 54%;
+  }
+  .f-center{
+    margin-top: 21%;
+  }
+}
+
+@media (min-height: 701px) and (min-height: 780px) {
+  #kt_login {
+    background-position: left bottom, bottom 5%, right 85%;
+  }
+
+  .f-center {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-height: 820px) {
+  #kt_login {
+    background-position: left bottom, bottom 5%, right 75%;
+  }
+
+  .f-center {
+    justify-content: center;
+    align-items: center;
+  }
+}

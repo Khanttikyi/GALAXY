@@ -39,7 +39,8 @@ export class TopbarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.currentUser.username=this.userService.userInfo.userName
+    // this.currentUser.username=this.userService.userInfo.userName
+    this.currentUser.username='Admin'
     // topbar extras
     this.extraSearchDisplay = this.layout.getProp('extras.search.display');
     this.extrasSearchLayout = this.layout.getProp('extras.search.layout');

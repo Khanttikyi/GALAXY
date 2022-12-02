@@ -33,6 +33,7 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 $custom-typography: mat-typography-config($font-family: "Calibri");
 @include mat-core($custom-typography);
+
 @font-face {
     font-family: "Calibri";
     src: url("assets/fonts/Calibri.eot?#iefix") format("embedded-opentype");
@@ -146,18 +147,22 @@ body {
 .angular-bootstrap-table {
     th {
         outline: none;
+
         &.sortable {
             .svg-icon-sort {
                 opacity: 0;
             }
+
             &:hover {
                 cursor: pointer;
+
                 .svg-icon-sort {
                     opacity: 1;
                 }
             }
         }
     }
+
     .table.table-head-custom thead th.sortable-active {
         color: $primary !important;
     }
@@ -219,6 +224,7 @@ tr.hovered {
 
 tr.highlighted {
     background-color: #3699FF;
+
     td {
         color: #fff !important;
     }
@@ -270,7 +276,8 @@ tr.highlighted {
 
 app-header.header.header-fixed,
 .mat-custom-page {
-    background-color: #10121d;
+    background: rgb(11,11,11);
+    background: linear-gradient(302deg, rgba(11,11,11,0.8029805672268908) 44%, rgba(170,135,4,0.6853335084033614) 75%, rgba(254,201,1,0.6825323879551821) 96%);
     color: #fff;
 }
 
@@ -388,9 +395,9 @@ app-header.header.header-fixed,
 .card.card-custom-orange,
 .card.card.card-custom-orange,
 .card.card-custom-orange .card-header {
-    box-shadow: none;
-    background-color: #0d0e19;
-    border-radius: 25px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 2px
 }
 
 .table.table-head-custom thead tr,
@@ -567,6 +574,7 @@ kbz-loading {
         background-color: rgba(00, 00, 00, 0.2);
         display: block !important;
     }
+
     #loading-text {
         display: block;
         position: absolute;
@@ -580,6 +588,7 @@ kbz-loading {
         font-family: 'PT Sans Narrow', sans-serif;
         font-size: 20px;
     }
+
     #loading-content {
         display: block;
         position: relative;
@@ -590,6 +599,7 @@ kbz-loading {
         margin: -85px 0 0 -85px;
         border: 3px solid #F00;
     }
+
     #loading-content:after {
         content: "";
         position: absolute;
@@ -599,6 +609,7 @@ kbz-loading {
         top: 15px;
         bottom: 15px;
     }
+
     #loading-content:before {
         content: "";
         position: absolute;
@@ -608,6 +619,7 @@ kbz-loading {
         top: 5px;
         bottom: 5px;
     }
+
     #loading-content {
         border: 3px solid transparent;
         border-top-color: #4D658D;
@@ -618,6 +630,7 @@ kbz-loading {
         -o-animation: loader 2s linear infinite;
         animation: loader 2s linear infinite;
     }
+
     #loading-content:before {
         border: 3px solid transparent;
         border-top-color: #D4CC6A;
@@ -628,6 +641,7 @@ kbz-loading {
         -o-animation: loader 2s linear infinite;
         animation: loader 3s linear infinite;
     }
+
     #loading-content:after {
         border: 3px solid transparent;
         border-top-color: #84417C;
@@ -638,30 +652,35 @@ kbz-loading {
         -moz-animation: loader 2s linear infinite;
         -o-animation: loader 2s linear infinite;
     }
+
     @-webkit-keyframes loaders {
         0% {
             -webkit-transform: rotate(0deg);
             -ms-transform: rotate(0deg);
             transform: rotate(0deg);
         }
+
         100% {
             -webkit-transform: rotate(360deg);
             -ms-transform: rotate(360deg);
             transform: rotate(360deg);
         }
     }
+
     @keyframes loader {
         0% {
             -webkit-transform: rotate(0deg);
             -ms-transform: rotate(0deg);
             transform: rotate(0deg);
         }
+
         100% {
             -webkit-transform: rotate(360deg);
             -ms-transform: rotate(360deg);
             transform: rotate(360deg);
         }
     }
+
     #content-wrapper {
         color: #FFF;
         position: fixed;
@@ -676,15 +695,18 @@ kbz-loading {
 .btn-group-sm>.btn {
     padding: 0.35rem 0.75rem;
 }
-.ng-select.ng-custom-select-sm .ng-select-container{
+
+.ng-select.ng-custom-select-sm .ng-select-container {
     height: calc(1.35em + 1.1rem + 2px);
     min-height: calc(1.35em + 1.1rem + 2px);
 
 }
-.input-group-sm .mat-icon-button.mat-button-base{
+
+.input-group-sm .mat-icon-button.mat-button-base {
     height: calc(1.35em + 1.1rem + 2px);
     line-height: 11px;
 }
+
 .form-control:disabled,
 .form-control-sm:disabled {
     background-color: #F3F6F9 !important;
@@ -698,11 +720,13 @@ kbz-loading {
 .ng-select .ng-select-container {
     border: 1px solid #E4E6EF;
 }
-.mat-paginator-range-label{
+
+.mat-paginator-range-label {
     margin: 0px;
     white-space: nowrap;
 }
-.mat-icon-button.mat-custom-page{
+
+.mat-icon-button.mat-custom-page {
     width: 2.5rem;
     line-height: 2.5rem !important;
     height: 2.5rem;

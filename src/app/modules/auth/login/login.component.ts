@@ -84,44 +84,44 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   async submit() {
-    this.hasError = false;
+    // this.hasError = false;
     // const loginSubscr = this.authService
     //   .login(this.f.userName.value, this.f.userPassword.value)
     //   .pipe(first())
     //   .subscribe((user: UserModel) => {
     //     if (user) {
-    //       this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/dashboard']);
     //     } else {
     //       this.hasError = true;
     //     }
     //   });
     // this.unsubscribe.push(loginSubscr);
-    this.database.checkUserExist(this.loginForm.value).then(async (res) => {
-      console.log(res);
-      if (res) {
-        if (res.userId != null) {
-          this.userService.userInfo = res
-          this.database.update('LOGIN_USER', res)
-          this.router.navigate(['/dashboard']);
-        }
-      } else {
-        let alert = await this.alertCtrl.create({
-          header: 'Warning',
-          message: 'User Name Or Password Incorrect',
-          buttons: [
-            { role: "cancel", text: "Cancel" },
-            { role: "ok", text: "OK" },
-          ],
-          backdropDismiss: false,
-          cssClass: "my-customer-alert",
-        });
-        await alert.present();
-        alert.onDidDismiss().then((res) => {
-          if (res.role == "ok") {
-          }
-        });
-      }
-    })
+    // this.database.checkUserExist(this.loginForm.value).then(async (res) => {
+    //   console.log(res);
+    //   if (res) {
+    //     if (res.userId != null) {
+    //       this.userService.userInfo = res
+    //       this.database.update('LOGIN_USER', res)
+    //       this.router.navigate(['/dashboard']);
+    //     }
+    //   } else {
+    //     let alert = await this.alertCtrl.create({
+    //       header: 'Warning',
+    //       message: 'User Name Or Password Incorrect',
+    //       buttons: [
+    //         { role: "cancel", text: "Cancel" },
+    //         { role: "ok", text: "OK" },
+    //       ],
+    //       backdropDismiss: false,
+    //       cssClass: "my-customer-alert",
+    //     });
+    //     await alert.present();
+    //     alert.onDidDismiss().then((res) => {
+    //       if (res.role == "ok") {
+    //       }
+    //     });
+    //   }
+    // })
 
   }
   checkUser() {

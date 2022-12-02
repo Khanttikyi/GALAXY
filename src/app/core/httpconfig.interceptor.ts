@@ -15,17 +15,18 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         // }
         // const token: string = this.userProfile.token;
 
-        if (this.authService.authToken) {
-            request = request.clone({ headers: request.headers.set('Authorization', "Bearer " + this.authService.authToken) });
+        // if (this.authService.authToken) {
+            // this.authService.authToken
+            request = request.clone({ headers: request.headers.set('authorization', "Bearer " +"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMjQxZDY2ZC02NDRlLTQ1YmItOTUzOS01MTRkMGMyNDY3ZWEiLCJuYW1lIjoiSnNvbiBXZWIgVG9rZW4iLCJpYXQiOjE2Njk3Mzk4OTI1MjV9.GeEQPhV7iIh9pVvH7D5dw1tsKs7wyiURPaNbSm6bq5k") });
             // let body = request.body
             // request = request.clone({ body: { ...body, userId: this.userProfile.userInfo.userId } });
-        }
+        // }
 
-        if (!request.headers.has('Content-Type')) {
-            request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-        }
-
-        request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+        // if (!request.headers.has('Content-Type')) {
+        //     request = request.clone({ headers: request.headers.set('Content-Type', 'application/json; charset=utf-8') });
+        // }
+        request = request.clone({ headers: request.headers.set('Access-Control-Allow-Origin','*')});
+        request = request.clone({ headers: request.headers.set('accept', 'application/json, text/javascript, */*; q=0.01') });
         // request = request.clone({ headers: request.headers.set('X-Tenant-ID', 'kbzms') });
         // request = request.clone({ headers: request.headers.set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyODQyMzI5OCwiaWF0IjoxNjI3ODE4NDk4fQ.K08GdAdgMVisiUjOO8ySxRA68Rj6PWTjRdoOBAnpRiCJ5aAY4pqJPKrhKS0ulK6K9qjU4jpOx2wuFdVi-XHw4A') });
 

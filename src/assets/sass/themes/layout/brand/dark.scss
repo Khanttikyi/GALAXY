@@ -6,20 +6,25 @@
 @import "../../../init";
 
 // Variables
+// background: rgb(11, 11, 11);
+// background: linear-gradient(126deg, rgba(11,11,11,0.33519345238095233) 22%, rgba(254,201,1,0.5340730042016807) 63%);
 $brand-bg: #10121d;
 $brand-icon-color: #10121d;
 $brand-icon-color-hover: $primary;
 
 $header-mobile-bg: #10121d;
-$header-mobile-shadow: 0px 1px 9px -3px rgba(0,0,0,0.1);
-$header-mobile-icon-color: #fff;
+$header-mobile-shadow: 0px 1px 9px -3px rgba(0, 0, 0, 0.1);
+$header-mobile-icon-color: black;
 $header-mobile-icon-color-hover: $primary;
 
 // Desktop Mode
 @include media-breakpoint-up(lg) {
 	.brand {
-	    background-color: $brand-bg;
-    	box-shadow: none;
+		background-color: $brand-bg;
+		// background: rgb(11, 11, 11);
+		// background: linear-gradient(126deg, rgba(11,11,11,0.33519345238095233) 22%, rgba(254,201,1,0.5340730042016807) 63%);
+
+		box-shadow: none;
 
 		// Button
 		.btn {
@@ -48,8 +53,11 @@ $header-mobile-icon-color-hover: $primary;
 // Tablet & Mobile Modes
 @include media-breakpoint-down(md) {
 	.header-mobile {
-		background-color: $header-mobile-bg;
-		//box-shadow: $header-mobile-shadow;
+		background: rgb(11, 11, 11);
+		background: linear-gradient(126deg, rgba(11,11,11,0.33519345238095233) 22%, rgba(254,201,1,0.5340730042016807) 63%);
+
+		// background-color: $header-mobile-bg;
+		// box-shadow: $header-mobile-shadow;
 
 		// Burger Icon
 		.burger-icon {
