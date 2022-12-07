@@ -1,3 +1,24 @@
-<app-material-table-view [data]="historyList" [colum]="ELEMENT_COL" [displayedColumns]="displayedColumns"
+<!-- <app-material-table-view [data]="historyList" [colum]="ELEMENT_COL" [displayedColumns]="displayedColumns"
 (emitter)="actionBtn($event)">
-</app-material-table-view>
+</app-material-table-view> -->
+<div class="table-responsive angular-bootstrap-table">
+  <table class="table table-head-custom table-vertical-center">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>Late</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let data of historyList;let i = index">
+        <tr>
+          <td>{{i+ 1}}</td>
+          <td>{{data.checkIn}}</td>
+          <td>{{data.checkOut}}</td>
+          <td>{{data.isLate}}</td>
+        </tr>
+      </ng-container>
+  </table>
+</div>
