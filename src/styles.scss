@@ -231,7 +231,8 @@ tr.highlighted {
 }
 
 .aside-menu {
-    background-color: #151620;
+    background: rgb(11,11,11);
+    background: linear-gradient(176deg, rgba(11,11,11,1) 57%, rgba(115,94,18,1) 70%, rgba(167,136,21,1) 78%, rgba(215,175,24,1) 88%);
 }
 
 .aside-menu .menu-nav>.menu-item>.menu-link .menu-text,
@@ -277,7 +278,7 @@ tr.highlighted {
 app-header.header.header-fixed,
 .mat-custom-page {
     background: rgb(11,11,11);
-    background: linear-gradient(302deg, rgba(11,11,11,0.8029805672268908) 44%, rgba(170,135,4,0.6853335084033614) 75%, rgba(254,201,1,0.6825323879551821) 96%);
+    background: linear-gradient(126deg, rgba(11,11,11,1) 22%, rgba(215,175,24,1) 75%);
     color: #fff;
 }
 
