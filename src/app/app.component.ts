@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private database: DatabaseService,
     private userService: UserProfileService
   ) {
-    router.navigate(['/auth']);
+    // router.navigate(['/auth']);
   }
   @HostListener('window:unload', ['$event'])
   beforeUnloadHandler(event) {

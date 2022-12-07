@@ -21,6 +21,18 @@ const routes: Routes = [
         loadChildren: () => import('./user-role/user-role.module').then( m => m.UserRolePageModule)
       },
       {
+        path: 'employee',
+        loadChildren: () => import('./employee/employee.module').then( m => m.EmployeePageModule)
+      },
+      {
+        path: 'attendance',
+        loadChildren: () => import('./attendance/attendance.module').then( m => m.AttendancePageModule)
+      },
+      // {
+      //   path: 'employee/add-new-employee',
+      //   loadChildren: () => import('./employee/employee.module').then( m => m.EmployeePageModule)
+      // },
+      {
         path: '',
         redirectTo: '/dashboard',
         pathMatch: 'full',
@@ -31,6 +43,13 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'attendance',
+    loadChildren: () => import('./attendance/attendance.module').then( m => m.AttendancePageModule)
+  },
+
+  
+
 
 
 

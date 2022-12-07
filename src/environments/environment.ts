@@ -8,7 +8,8 @@ export const environment = {
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: false,
   // apiUrl: 'http://104.248.152.205:8082/sale/api/v1',
-  apiUrl:'http://192.168.100.56:3200/api'
+ // apiUrl:'http://192.168.100.56:3200/api'
+  apiUrl:'localhost:3040/api'
 };
 
 /*

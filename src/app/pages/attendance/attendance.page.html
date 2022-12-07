@@ -1,0 +1,48 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;"><span class="time">{{time}}</span>
+      <br>
+    {{todaydate}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<div class="12 time">
+  <canvas #canvas width="400" height="70" background-color="red"></canvas>
+
+</div>
+<div class="12 date">
+  <span class="date">{{todaydate}}</span>
+</div>
+<br>
+<div class="12" style="text-align: center;margin-top: 3%;">
+
+  <button type="button" class="btn  btn-circle btn-xl" [ngClass]="check?'in':'out'" (click)="checkButton()">
+    <img src="./../../../assets/images/finger-icon.png" style="width: 65px;">
+    <br>
+    <span style="color: white;font-weight:600;">{{check?'CHECK IN':'CHECK OUT'}}</span>
+  </button>
+</div>
+<br>
+<div class="row" style="margin-top: 7%;">
+  <div class="col-4 labelst">
+    <span class="labelch">Check In Time</span>
+
+  </div>
+  <div class="col-4 labelst">
+    <span class="labelch">Check Out Time</span>
+  </div>
+  <div class="col-4 labelst">
+    <span class="labelch">Working Hours</span>
+  </div>
+</div>
+<div class="row" style="margin-top: 3%;">
+  <div class="col-4 labelst">
+    <span class="labelch">{{checkintime}}</span>
+
+  </div>
+  <div class="col-4 labelst">
+    <span class="labelch">{{checkouttime}}</span>
+  </div>
+  <div class="col-4 labelst">
+    <span class="labelch">{{workinghour}}</span>
+  </div>
+</div>

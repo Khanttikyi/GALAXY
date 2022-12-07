@@ -1,0 +1,47 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-title h4" id="example-modal-sizes-title-lg">
+      <ng-container>
+        <ng-container>Create New Department</ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="overlay overlay-block cursor-default modal-body">
+    <ng-container *ngIf="newRole">
+      <form class="form form-label-right" [formGroup]="newDepartmentForm">
+        <div class="form-group row">
+          <label class="col-4 form-label m-auto">Department Name
+            <span class="text-danger">*</span></label>
+          <input type="text" class="col-8 form-control form-control-sm" name="departmentName" placeholder="Enter Department Name"
+            autocomplete="off" formControlName="departmentName" />
+          
+        </div>
+        <div class="form-group row">
+          <label class="col-4 form-label m-auto">Description</label>
+          <input type="text" class="col-8 form-control form-control-sm" name="departmentDescription"
+            placeholder="Enter Department Description" autocomplete="off" formControlName="departmentDescription"
+            />
+          
+        </div>
+        <!-- <div class="form-group row">
+          <label class="col-4 form-label m-auto">Enabled<span class="text-danger">*</span></label>
+          <mat-radio-group class="col-8 m-auto" formControlName="isEnabled">
+            <mat-radio-button class="mat-primary" style="margin-left: -12px;" value="Y">Yes
+            </mat-radio-button>
+            <mat-radio-button class="mat-primary ml-4" value="N">No
+            </mat-radio-button>
+          </mat-radio-group>
+        </div> -->
+      </form>
+    </ng-container>
+  </div>
+
+  <div class="modal-footer mt-5">
+    <button type="button" class="btn btn-light btn-elevate mr-2" (click)="cancel()">Cancel</button>
+    <ng-container *ngIf="newRole">
+      <button type="submit" class="btn btn-primary btn-elevate" (click)="save()"
+        [disabled]="newDepartmentForm.invalid">Save</button>
+    </ng-container>
+  </div>
+</div>

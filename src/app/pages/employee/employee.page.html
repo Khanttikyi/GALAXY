@@ -1,0 +1,123 @@
+
+<div class="card card-custom gutter-b">
+  <div class="card-header">
+      <div class="card-title">
+          <h3 class="card-label">Employee Management</h3>
+      </div>
+      <div class="card-toolbar mr-1">
+          <button type="button" class="btn btnSearch" (click)="getList()">
+              <span class="flaticon2-search m-1"></span>Search
+          </button>
+          <button type="button" class="btn btnCancel ml-4" (click)="cancelSearch()">
+              <span class="flaticon-cancel m-1"></span>Cancel
+          </button>
+          <button type="button" class="btn createBtn ml-4" (click)="createCodeBook()">
+              <span class="flaticon2-plus m-1"></span>Create
+          </button>
+      </div>
+  </div>
+  <div class="card-body">
+      <form class="form" [formGroup]="searchGroup">
+          <div class="row m-1">
+              <div class="col-4">
+                  <div class="row">
+                      <label class="col-6 form-label m-auto">Employee Type</label>
+                      <input type="text" class="col-6 form-control form-control-sm" name="searchCodeType"
+                          placeholder="Employee Type" autocomplete="off" formControlName="searchCodeType" (keyup.enter)="getList()"/>
+                  </div>
+              </div>
+              <div class="col-4">
+                  <div class="row">
+                      <label class="offset-1 col-5 form-label m-auto">Employee Name</label>
+                      <input type="text" class="col-6 form-control form-control-sm" name="searchCodeName"
+                          placeholder="Employee Name" autocomplete="off" formControlName="searchCodeName" (keyup.enter)="getList()"/>
+                  </div>
+              </div>
+              <div class="col-4">
+                  <div class="row">
+                      <label class="offset-1 col-5 form-label m-auto">Department Name</label>
+                      <input type="text" class="col-6 form-control form-control-sm" name="searchParentCodeType"
+                          placeholder="Department Name" autocomplete="off" formControlName="searchParentCodeType" (keyup.enter)="getList()"/>
+                  </div>
+              </div>
+          </div>
+
+      </form>
+  </div>
+</div>
+<div class="card card-custom gutter-b">
+  <div class="card-body">
+      <div class="tab-content">
+          <!--begin::Table-->
+          <div class="table-responsive">
+              <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                  <thead>
+                      <tr class="text-left text-uppercase">
+                          <th style="min-width: 100px;"><span class="text-dark-75 title-bold">Employee Name</span></th>
+                          <th style="min-width: 100px;"><span class="text-dark-75 title-bold">Department</span></th>
+                          <th style="min-width: 100px;"><span class="text-dark-75 title-bold">Position </span></th>
+                          <th style="min-width: 130px;"><span class="text-dark-75 title-bold">Join Date</span></th>
+                          <th style="min-width: 80px;"><span class="text-dark-75 title-bold">Status</span></th>
+                          <th style="min-width: 80px;text-align: center;"><span class="text-dark-75 title-bold">Action</span></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let codeBook of codeBookLists; let i=index">
+                          <!-- <td>
+                              <span class="text-dark-75 font-weight-bold d-block font-size-lg pl-7">
+                                  {{codeBook.count}}
+                              </span>
+                          </td> -->
+                          <td>
+                              <span class="text-dark-75 font-weight-bold d-block font-size-lg">
+                                  {{codeBook.codeId}}
+                              </span>
+                          </td>
+                          <td>
+                              <span class="text-dark-75 font-weight-bold d-block font-size-lg">
+                                  {{codeBook.codeType}}
+                              </span>
+                          </td>
+                          <td>
+                              <span class="text-dark-75 font-weight-bold d-block font-size-lg">
+                                  {{codeBook.codeName}}
+                              </span>
+                          </td>
+                          <td>
+                              <span class="text-dark-75 font-weight-bold d-block font-size-lg">
+                                  {{codeBook.parentType}}
+                              </span>
+                          </td>
+                          <td>
+                              <span class="text-dark-75 font-weight-bold d-block font-size-lg">
+                                  {{codeBook.parentId}}
+                              </span>
+                          </td>
+                          <td style="text-align: center;">
+                              <div class="btn btn-icon btn-clean  btn-dropdown btn-lg"
+                                  (click)="editCodeBook(codeBook)">
+                                  <span class="text-info d-block flaticon-edit m-1 "></span>
+                              </div>
+                              <!-- <div class="btn btn-icon btn-clean btn-dropdown btn-lg ml-1"
+                                  (click)="deleteCodeBook(codebook.codeId,codebook.codeType)">
+                                  <span class="text-danger flaticon2-trash m-1"></span>
+                              </div> -->
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div *ngIf="codeBookLists.length == 0 " class="text-center" style="color: #b5b5c3;">
+              <span class="flaticon-interface-3 m-10" style="font-size: 50px;"></span>
+              <h6> No Data Available</h6>
+          </div>
+          <!--end::Table-->
+          <!-- <div *ngIf="codeBookLists.length > 0 && totalElements > 5">
+              <pagination [count]="totalElements" [sourceData]="codeBookLists" [totalPage]="totalPages" [pageSize]="5"
+                  (currentPage)="getDatabyPage($event)">
+              </pagination>
+          </div> -->
+          
+      </div>
+  </div>
+</div>

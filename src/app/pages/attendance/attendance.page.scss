@@ -1,0 +1,37 @@
+.time{
+    text-align: center;
+    font-size: 3rem;
+
+}
+.date{
+    text-align: center;
+    font-size: 1.2rem;
+}
+.labelst{
+    text-align: center;
+}
+.labelch{
+    font-size: 1rem;
+    font-weight: 500;
+}
+.btn-circle.btn-xl {
+    width: 170px;
+    height: 170px;
+    // padding: 13px 18px;
+    // border-radius: 60px;
+    font-size: 15px;
+    text-align: center;
+    border-color: blanchedalmond;
+    
+    // background: radial-gradient(#e66465, #9198e5);
+    //background: radial-gradient(#017bf2, #0d0e159e);
+}
+.in{
+    background: #3f83d7;
+}
+.out{
+    background: red;
+}
+canvas{
+    background-color: red;
+}

@@ -1,0 +1,294 @@
+<div class="card card-custom gutter-b">
+  <div class="card-header">
+    <div class="card-title">
+      <h3 class="card-label" *ngIf="pageStatus == 'create'">Create New Employee</h3>
+      <h3 class="card-label" *ngIf="pageStatus == 'edit'">Edit Employee Detail</h3>
+    </div>
+  </div>
+  <div class="card-body">
+    <form class="form" [formGroup]="detailFormGroup">
+      <div class="row">
+        <div class="col-11">
+          <h5 class="font-weight-bold mb-6">Employee Profile</h5>
+        </div>
+        <div class="col-1">
+          <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1" (click)="isCollapsedUser = !isCollapsedUser"
+            [attr.aria-expanded]="!isCollapsedUser" aria-controls="userProfileCollapse">
+            <span *ngIf="isCollapsedUser" class="flaticon2-arrow-up"></span>
+            <span *ngIf="!isCollapsedUser" class="flaticon2-arrow-down"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="userProfileCollapse" [ngbCollapse]="isCollapsedUser">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="row">
+                <div class="offset-1 col-4">
+                  <span class="form-text mt-7 mb-2 font-size-lg">Profile Image</span>
+
+                  <div class="image-input image-input-outline" id="kt_profile_avatar"
+                    [style.backgroundImage]="'url(./assets/images/default-user.png)'">
+                    <div class="image-input-wrapper"></div>
+                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                      data-action="change" data-toggle="tooltip" title="" data-original-title="Change Profile">
+                      <i class="fa fa-pen icon-sm text-muted"></i>
+                      <input type="file" #selectedFile accept=".png, .jpg, .jpeg" (change)="getPic($event)" />
+                      <input type="hidden" name="profile_remove" formControlName="profile" />
+                    </label>
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                      data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel Profile">
+                      <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                      (click)="deletePic()" data-action="remove" data-toggle="tooltip" title=""
+                      data-original-title="Remove Profile">
+                      <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+                  </div>
+                  <span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+                </div>
+                <div class="col-6">
+                  <div class="row mt-5">
+                    <label class="col-4 form-label m-auto">Employee Name<span class="text-danger">*</span></label>
+                    <input type="text" class="col-8 form-control form-control-sm" name="employeeName"
+                      placeholder="Employee Name" autocomplete="off" formControlName="employeeName"
+                       />
+                    <div class="offset-4 col-8 invalid-feedback" >
+                      Login Username is required</div>
+                    <div class="offset-4 col-8 invalid-feedback">
+                      Login Username should have at least 3 symbols</div>
+                    <div class="offset-4 col-8 invalid-feedback" >
+                      Login Username should have maximum 100 symbols</div>
+                  </div>
+                  <div class="row mt-5">
+                    <label class="col-4 form-label m-auto">Department<span class="text-danger">*</span></label>
+                   
+                     <select formControlName="department" class="col-7 form-control form-control-sm" name="department"
+                      >
+                      <option *ngFor="let role of roleOptions" [value]="role.code">{{role.value}}
+                      </option>
+                    </select> 
+                    <button class="col-1 plus-btn" type="button" (click)="addDepartment()"><i class="fa fa-plus book"></i></button> 
+                    <div class="offset-4 col-8 invalid-feedback">
+                      Role is required</div>
+                  </div>
+                  <div class="row mt-5">
+                    <label class="col-4 form-label m-auto">Position<span class="text-danger">*</span></label>
+
+                    <select formControlName="position" class="col-7 form-control form-control-sm" name="position"
+                      >
+                      <option *ngFor="let role of roleOptions" [value]="role.code">{{role.value}}
+                      </option>
+                    </select> 
+                    <button class="col-1 plus-btn" type="button" (click)="addPosition()"><i class="fa fa-plus book"></i></button> 
+                    <div class="offset-4 col-8 invalid-feedback">
+                      Role is required</div>
+                  </div>
+                  <div class="row mt-5">
+                    <label class="col-4 form-label m-auto">Salary<span class="text-danger">*</span></label>
+                    <input type="text" class="col-8 form-control form-control-sm" name="salary"
+                      placeholder="Salary" autocomplete="off" formControlName="salary"
+                      />
+                    <div class="offset-4 col-8 invalid-feedback">
+                      Login Username is required</div>
+                    <div class="offset-4 col-8 invalid-feedback" >
+                      Login Username should have at least 3 symbols</div>
+                    <div class="offset-4 col-8 invalid-feedback" >
+                      Login Username should have maximum 100 symbols</div>
+                  </div>
+
+                  <div class="row mt-5">
+                    <label class="col-4 form-label m-auto">Date<span class="text-danger">*</span></label>
+                   
+                    <select formControlName="date" class="col-8 form-control form-control-sm" name="date"
+                      >
+                      <option *ngFor="let role of roleOptions" [value]="role.code">{{role.value}}
+                      </option>
+                    </select>
+                    <div class="offset-4 col-8 invalid-feedback">
+                      Role is required</div>
+                  </div>
+
+                  <div class="row mt-6">
+                    <label class="col-4 form-label m-auto">Status<span class="text-danger">*</span></label>
+                    <mat-radio-group class="col-8 m-auto" formControlName="status">
+                      <mat-radio-button class="mat-primary" style="margin-left: -12px;" value="Y">
+                        Active
+                      </mat-radio-button>
+                      <mat-radio-button class="mat-primary ml-4" value="N">Terminated
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator separator-dashed my-5"></div>
+
+      <div class="row">
+        <div class="col-11">
+          <h5 class="font-weight-bold mb-6">Employee Information Detail</h5>
+        </div>
+        <div class="col-1">
+          <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1" (click)="isCollapsedEmp = !isCollapsedEmp"
+            [attr.aria-expanded]="!isCollapsedEmp" aria-controls="empProfileCollapse">
+            <span *ngIf="isCollapsedEmp" class="flaticon2-arrow-up"></span>
+            <span *ngIf="!isCollapsedEmp" class="flaticon2-arrow-down"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="empProfileCollapse" [ngbCollapse]="isCollapsedEmp">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-4">
+                  <div class="row mt-4">
+                    <label class="col-5 form-label m-auto">Employee No<span class="text-danger">*</span></label>
+                    <input type="text" class="col-7 form-control form-control-sm" name="employeeNo"
+                      placeholder="Employee No" autocomplete="off" formControlName="employeeNo"
+                      />
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No is required</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No should have at least 3 symbols</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No should have maximum 100 symbols</div>
+                  </div>
+                  <div class="row mt-4">
+                    <label class="col-5 form-label m-auto">NRC<span class="text-danger">*</span></label>
+                    <input type="text" class="col-7 form-control form-control-sm" name="nrc" placeholder="NRC"
+                      autocomplete="off" formControlName="nrc"  />
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User Name is required</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User Name should have at least 3 symbols</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User Name should have maximum 100 symbols</div>
+                  </div>
+                  <div class="row mt-4">
+                    <label class="col-5 form-label m-auto">Father Name<span class="text-danger">*</span></label>
+                    <input type="text" class="col-7 form-control form-control-sm" name="fatherName"
+                      placeholder="Father Name" autocomplete="off" formControlName="fatherName"
+                     />
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No is required</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No should have at least 3 symbols</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No should have maximum 100 symbols</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="row mt-4">
+                    <label class="offset-1 col-4 form-label m-auto">Email</label>
+                    <select formControlName="email" class="col-7 form-control form-control-sm" name="email">
+                      <option *ngFor="let email of departmentOptions" [value]="email.code">
+                        {{email.value}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="row mt-4">
+                    <label class="offset-1 col-4 form-label m-auto">Date Of Birth</label>
+                    <select formControlName="dob" class="col-7 form-control form-control-sm" name="dob">
+                      <option *ngFor="let position of positionOptions" [value]="position.code">
+                        {{position.value}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="row mt-4">
+                    <label class="offset-1 col-4 form-label m-auto">Address</label>
+
+                    <input type="text" class="col-7 form-control form-control-sm" name="userNo" placeholder="Address"
+                      autocomplete="off" formControlName="address"  />
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No is required</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No should have at least 3 symbols</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      User No should have maximum 100 symbols</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="row mt-4">
+                    <label class="offset-1 col-4 form-label m-auto">Mobile No
+                      <span class="text-danger">*</span></label>
+                    <input type="number" class="col-7 form-control form-control-sm" name="mobileNo"
+                      placeholder="Mobile No" autocomplete="off" formControlName="mobileNo"
+                       />
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      Mobile No is required</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      Mobile No should have at least 9 digits</div>
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      Mobile No should have maximum 11 digits</div>
+                  </div>
+                  <div class="row mt-4">
+                    <label class="offset-1 col-4 form-label m-auto">Gender</label>
+                    <input type="email" class="col-7 form-control form-control-sm" name="email"
+                      placeholder="Date Of Birth" autocomplete="off" formControlName="email"
+                      />
+                    <div class="offset-5 col-7 invalid-feedback" >
+                      Email is required</div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator separator-dashed my-5" *ngIf="pageStatus == 'edit'"></div>
+
+      <div class="row" *ngIf="pageStatus == 'edit'">
+        <div class="col-6">
+          <div class="row mt-4">
+            <label class="col-3 form-label m-auto">Created By : </label>
+            <label class="col-8 form-label">{{detailFormGroup.value.createdBy}}</label>
+          </div>
+          <div class="row mt-4">
+            <label class="col-3 form-label m-auto">Updated By : </label>
+            <label class="col-8 form-label">{{detailFormGroup.value.updatedBy}}</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="row mt-4">
+            <label class="col-3 form-label m-auto">Created Date : </label>
+            <label class="col-8 form-label">{{detailFormGroup.value.createdDate |
+              date:'YYYY-MM-dd'}}</label>
+          </div>
+          <div class="row mt-4">
+            <label class="col-3 form-label m-auto">Updated Date : </label>
+            <label class="col-8 form-label">{{detailFormGroup.value.updatedDate |
+              date:'YYYY-MM-dd'}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 pr-0 text-right">
+        <!-- <button type="button" class="btn btn-outline-secondary" (click)="cancel()" style="width: 10%">
+          <span class="flaticon2-back m-1"></span>Back
+        </button> -->
+        <button type="button" class="btn btn-light btn-elevate mr-2" (click)="cancel()"><span class="flaticon2-back m-1"></span>Cancel</button>
+        <button type="button" class="btn btn-save btn-elevate" (click)="saveUser()" style="width: 10%"
+          [disabled]="detailFormGroup.invalid" *ngIf="pageStatus == 'create'">
+          <span class="flaticon2-download m-1"></span>Save
+        </button>
+        <button type="button" class=" btn-save ml-4" (click)="saveUser()" style="width: 10%;margin-right: 2%;"
+          [disabled]="detailFormGroup.invalid" *ngIf="pageStatus == 'edit'">
+          <span class="flaticon2-download m-1"></span>Update
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

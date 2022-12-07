@@ -15,11 +15,21 @@ export const DynamicAsideMenuConfig = {
       root: true,
       icon: 'flaticon-users',
       svg: './assets/media/svg/icons/Design/Layers.svg',
-      page: '/em',
+      page: '/employee',
       bullet: 'dot',
       show: true,
+      submenu: [
+        {
+          title: 'Add New Employee',
+          page: '/employee/add-new-employee'
+        },
+        
+      ]
+     
 
     },
+    
+   
     {
       title: 'User Management',
       root: true,
@@ -35,7 +45,7 @@ export const DynamicAsideMenuConfig = {
       root: true,
       icon: 'flaticon-time-3',
       svg: './assets/media/svg/icons/Design/Layers.svg',
-      page: '/att',
+      page: '/attendance',
       bullet: 'dot',
       show: true,
 
