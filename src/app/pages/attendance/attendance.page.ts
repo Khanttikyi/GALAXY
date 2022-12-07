@@ -1,7 +1,9 @@
 import { formatDate } from '@angular/common';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { getTimeGivenProgression } from '@ionic/angular';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, timer } from 'rxjs';
+import { AttendanceHistoryComponent } from './attendance-history/attendance-history.component';
 
 @Component({
   selector: 'app-attendance',
@@ -32,7 +34,7 @@ export class AttendancePage implements OnInit, OnDestroy {
     "Hour": 9,
     "TYPE": "AM"
   }
-  constructor() { }
+  constructor(private modalService:NgbModal) { }
 
   ngOnInit() {
     this.ctx = this.canvas.nativeElement.getContext("2d");
@@ -146,5 +148,13 @@ export class AttendancePage implements OnInit, OnDestroy {
       console.log("gg", gg)
       this.workinghour = ff + "hr" + gg + "minutes"
     }
+  }
+  viewHistory(){
+    const modalRef = this.modalService.open(AttendanceHistoryComponent, { size: 'lg', backdrop: false });
+    modalRef.componentInstance.type = 'modal'
+    modalRef.result.then(() => { }, (res) => {
+      if (res) {
+      }
+    })
   }
 }
