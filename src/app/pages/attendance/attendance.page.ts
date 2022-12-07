@@ -16,7 +16,7 @@ export class AttendancePage implements OnInit, OnDestroy {
 
   date = new Date();
   gettime = this.date.toLocaleTimeString();
-  
+
   test = this.gettime.split(":");
   time: any
   hour: any;
@@ -28,8 +28,11 @@ export class AttendancePage implements OnInit, OnDestroy {
   checkintime: any
   checkouttime: any
   workinghour: any
-  
-  constructor() {}
+  Valid = {
+    "Hour": 9,
+    "TYPE": "AM"
+  }
+  constructor() { }
 
   ngOnInit() {
     this.ctx = this.canvas.nativeElement.getContext("2d");
@@ -82,7 +85,7 @@ export class AttendancePage implements OnInit, OnDestroy {
     // This green color was picked
     // using http://jscolor.com/
     this.ctx.fillStyle = "black";
-    
+
     // Draw the text
     this.ctx.font = "67px Arial";
     // this.ctx.strokeStyle = 'black';
@@ -94,7 +97,7 @@ export class AttendancePage implements OnInit, OnDestroy {
     return (s < 10 ? "0" : "") + s;
   }
   getTime() {
-    
+
 
     this.hour = [formatDate(this.date, 'MM-dd-YYYY', 'en')];
     var dateNew = this.hour[0].split('-')[1];
@@ -106,11 +109,19 @@ export class AttendancePage implements OnInit, OnDestroy {
     if (this.check) {
       this.check = false
       this.checkintime = this.gettime
-
+      let inhr = this.checkintime.split(":");
+      let hh = inhr[0]
+      let mm = inhr[1]
+      let ty = inhr[2].split(" ")
+      let type = ty[1]
+      console.log("HH", hh, "MM", mm, "TYPE", type);
+      if (hh >= this.Valid.Hour && type == this.Valid.TYPE){
+       alert("LATE")
+      }
     }
     else {
       this.check = true
-      
+
       const now = new Date();
       let h = now.getHours();
       const m = now.getMinutes();
@@ -118,23 +129,22 @@ export class AttendancePage implements OnInit, OnDestroy {
       const ampm = h < 12 ? "AM" : "PM";
       h = h % 12;
       const clockText =
-      this.addLeadingZeroWhenNecessary(h) +
-      ":" +
-      this.addLeadingZeroWhenNecessary(m) +
-      ":" +
-      this.addLeadingZeroWhenNecessary(s) +
-      " " +
-      ampm;
-        this.checkouttime = clockText
-        let inhr = this.checkintime.split(":");
-        let outhr = this.checkouttime.split(":");
-        let ff = outhr[0] - inhr[0]
-        let gg = outhr[1] - inhr[1]
-        let hh = outhr[2] - inhr[2]
-        console.log("ff", ff )
-        console.log("gg", gg )
-        this.workinghour = ff + "hr" + gg + "minutes"
-        
+        this.addLeadingZeroWhenNecessary(h) +
+        ":" +
+        this.addLeadingZeroWhenNecessary(m) +
+        ":" +
+        this.addLeadingZeroWhenNecessary(s) +
+        " " +
+        ampm;
+      this.checkouttime = clockText
+      let inhr = this.checkintime.split(":");
+      let outhr = this.checkouttime.split(":");
+      let ff = outhr[0] - inhr[0]
+      let gg = outhr[1] - inhr[1]
+      let hh = outhr[2] - inhr[2]
+      console.log("ff", ff)
+      console.log("gg", gg)
+      this.workinghour = ff + "hr" + gg + "minutes"
     }
   }
 }
