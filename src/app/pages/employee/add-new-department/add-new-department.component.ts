@@ -26,24 +26,23 @@ export class AddNewDepartmentComponent implements OnInit {
 
   loadForm() {
     this.newDepartmentForm = new FormGroup({
-      departmentName: new FormControl(null ),
+      departmentName: new FormControl(null),
       departmentDescription: new FormControl(null),
-      
+
     });
   }
 
   prepareCreate() {
     this.newRole = {
-      departmentName: this.newDepartmentForm.value.departmentName,
-      descp: this.newDepartmentForm.value.departmentDescription,
-      useYn: this.newDepartmentForm.value.isEnabled
+      department_name: this.newDepartmentForm.value.departmentName,
+      department_description: this.newDepartmentForm.value.departmentDescription,
     }
   }
 
   save() {
     this.prepareCreate()
-    this.employeeService.save(this.newRole).toPromise().then((res: any) => {
-      this.modal.dismiss({ data: res.data })
+    this.employeeService.addDeparment(this.newRole).toPromise().then((res: any) => {
+      this.modal.dismiss({ data: res })
     })
   }
 

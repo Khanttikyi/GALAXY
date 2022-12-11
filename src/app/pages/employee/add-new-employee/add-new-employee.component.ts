@@ -32,22 +32,22 @@ export class AddNewEmployeeComponent implements OnInit {
   isCollapsedEmp = false;
   roleOptions: any = []
   positionOptions: any = [
-    { value: 'Select', code: 0 },
-    { value: 'CEO', code: 1 },
-    { value: 'Manager', code: 2 },
-    { value: 'Project Leader', code: 3 },
-    { value: 'Senior Developer', code: 4 },
-    { value: 'Regular Developer', code: 5 },
-    { value: 'Junior Developer', code: 6 },
+    // { value: 'Select', code: 0 },
+    // { value: 'CEO', code: 1 },
+    // { value: 'Manager', code: 2 },
+    // { value: 'Project Leader', code: 3 },
+    // { value: 'Senior Developer', code: 4 },
+    // { value: 'Regular Developer', code: 5 },
+    // { value: 'Junior Developer', code: 6 },
   ]
   departmentOptions: any = [
-    { value: 'Select', code: 0 },
-    { value: 'Head Office', code: 1 },
-    { value: 'HR Department', code: 2 },
-    { value: 'Software Department', code: 3 },
-    { value: 'Hardware Department', code: 4 },
-    { value: 'Network Department', code: 5 },
-    { value: 'Testing Department', code: 6 },
+    // { value: 'Select', code: 0 },
+    // { value: 'Head Office', code: 1 },
+    // { value: 'HR Department', code: 2 },
+    // { value: 'Software Department', code: 3 },
+    // { value: 'Hardware Department', code: 4 },
+    // { value: 'Network Department', code: 5 },
+    // { value: 'Testing Department', code: 6 },
   ]
 
   constructor(
@@ -58,6 +58,8 @@ export class AddNewEmployeeComponent implements OnInit {
     private alertService: AlertService,
     private cdf: ChangeDetectorRef
   ) {
+    this.getDepartment()
+    this.getPosition()
   }
 
   ngOnInit(): void {
@@ -87,17 +89,17 @@ export class AddNewEmployeeComponent implements OnInit {
     this.detailFormGroup = new FormGroup({
       // userId: new FormControl(data ? data.userId : 0),
       profile: new FormControl(data ? data.employee_profile : ''),
-      employeeName: new FormControl( data ? data.employee_name : ''),
-      department: new FormControl( data ? data.employee_department : ''),
+      employeeName: new FormControl(data ? data.employee_name : ''),
+      department: new FormControl(data ? data.employee_department : ''),
       position: new FormControl(data ? data.employee_position : ''),
-      status: new FormControl(data?(data.employee_status):null),
+      status: new FormControl(data ? (data.employee_status) : null),
       salary: new FormControl(data ? data.employee_salary : ''),
-      date: new FormControl(data ? moment( data.employee_join_date) : null),
-      employeeNo: new FormControl(data ? data.employee_id :null),
-      nrc: new FormControl(data ? data.employee_nrc :null),
-      fatherName: new FormControl(data ? data.employee_father_name :null),
-      dob: new FormControl(data ? moment( data.employee_dob) :null),
-      gender: new FormControl(data ? data.employee_gender :null),
+      date: new FormControl(data ? moment(data.employee_join_date) : null),
+      employeeNo: new FormControl(data ? data.employee_id : null),
+      nrc: new FormControl(data ? data.employee_nrc : null),
+      fatherName: new FormControl(data ? data.employee_father_name : null),
+      dob: new FormControl(data ? moment(data.employee_dob) : null),
+      gender: new FormControl(data ? data.employee_gender : null),
       mobileNo: new FormControl(data ? data.employee_phone : ''),
       email: new FormControl(data ? data.employee_email : '', [Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       address: new FormControl(data ? data.employee_address : null),
@@ -113,7 +115,7 @@ export class AddNewEmployeeComponent implements OnInit {
     this.detailFormGroup.valueChanges.subscribe(() => {
       console.log(this.detailFormGroup.value)
     });
- }
+  }
   // getRoles() {
   //   this.roleService.getRoles('Y').toPromise().then(
   //     (res: any) => {
@@ -132,7 +134,7 @@ export class AddNewEmployeeComponent implements OnInit {
     modalRef.result.then(() => { }, (res) => {
       if (res.data) {
         this.alertService.activate('This record was created.', 'Success Message');
-        // this.getRolesByPage(1)
+        this.getDepartment()
       }
     }
     );
@@ -142,7 +144,7 @@ export class AddNewEmployeeComponent implements OnInit {
     modalRef.result.then(() => { }, (res) => {
       if (res.data) {
         this.alertService.activate('This record was created.', 'Success Message');
-        // this.getRolesByPage(1)
+        this.getPosition()
       }
     }
     );
@@ -152,31 +154,31 @@ export class AddNewEmployeeComponent implements OnInit {
     let request = {
       // avatar: this.avatar ? this.avatar : null,
       employee_id: Number(this.detailFormGroup.value.employeeNo),
-      employee_name:this.detailFormGroup.value.employeeName,
-      employee_position:this.detailFormGroup.value.position,
-      employee_department:this.detailFormGroup.value.department,
-      employee_salary:Number(this.detailFormGroup.value.salary),
-      employee_join_date:moment(this.detailFormGroup.value.date).format("MM-DD-YYYY"), 
-      employee_status:this.detailFormGroup.value.status,
-      employee_email:this.detailFormGroup.value.email,
-      employee_phone:this.detailFormGroup.value.mobileNo,
-      employee_nrc:this.detailFormGroup.value.nrc,
-      employee_dob:moment(this.detailFormGroup.value.dob).format("MM-DD-YYYY"), 
-      employee_gender:this.detailFormGroup.value.gender,
-      employee_father_name:this.detailFormGroup.value.fatherName,
-      employee_address:this.detailFormGroup.value.address,
+      employee_name: this.detailFormGroup.value.employeeName,
+      employee_position: this.detailFormGroup.value.position,
+      employee_department: this.detailFormGroup.value.department,
+      employee_salary: Number(this.detailFormGroup.value.salary),
+      employee_join_date: moment(this.detailFormGroup.value.date).format("MM-DD-YYYY"),
+      employee_status: this.detailFormGroup.value.status,
+      employee_email: this.detailFormGroup.value.email,
+      employee_phone: this.detailFormGroup.value.mobileNo,
+      employee_nrc: this.detailFormGroup.value.nrc,
+      employee_dob: moment(this.detailFormGroup.value.dob).format("MM-DD-YYYY"),
+      employee_gender: this.detailFormGroup.value.gender,
+      employee_father_name: this.detailFormGroup.value.fatherName,
+      employee_address: this.detailFormGroup.value.address,
     }
     console.log("Request data: ", request)
     if (this.pageStatus == 'create') {
       this.employeeService.save(request).toPromise().then((res) => {
         if (res) {
           console.log("Create: ", res)
-           this.alertService.activate('This record was created', 'Success Message');
-             this.location.back()
+          this.alertService.activate('This record was created', 'Success Message');
+          this.location.back()
         }
       })
     } else {
-      this.employeeService.update(request,request.employee_id).toPromise().then((res) => {
+      this.employeeService.update(request, request.employee_id).toPromise().then((res) => {
         if (res) {
           console.log("Update: ", res)
           this.alertService.activate('This record was updated', 'Success Message');
@@ -184,9 +186,9 @@ export class AddNewEmployeeComponent implements OnInit {
         }
       })
     }
-  
+
   }
-  clearDate(type){
+  clearDate(type) {
     this.detailFormGroup.controls[type].setValue(null)
   }
 
@@ -227,7 +229,26 @@ export class AddNewEmployeeComponent implements OnInit {
     }
   }
 
+
   deletePic() { }
+
+  getDepartment() {
+    this.employeeService.getDepartment().toPromise().then(res => {
+      if (res) {
+        this.departmentOptions = res
+        this.cdf.detectChanges()
+      }
+    })
+  }
+  getPosition() {
+    this.employeeService.getPosition().toPromise().then(res => {
+      if (res) {
+        this.positionOptions = res
+        this.cdf.detectChanges()
+      }
+    })
+  }
+
 
   //for view
   isControlValid(controlName: string): boolean {

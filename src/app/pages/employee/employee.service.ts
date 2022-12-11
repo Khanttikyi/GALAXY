@@ -34,6 +34,19 @@ export class EmployeeService {
     return this.httpClient.delete(API_EMPLOYEE_URL + '/employee/' + deleteData)
   }
 
+  getDepartment() {
+    return this.httpClient.get(API_EMPLOYEE_URL + '/getDepartments')
+  }
+  addDeparment(requestData) {
+    return this.httpClient.post(API_EMPLOYEE_URL + '/department', requestData)
+  }
+  getPosition() {
+    return this.httpClient.get(API_EMPLOYEE_URL + '/getPositions')
+  }
+  addPosition(requestData) {
+    return this.httpClient.post(API_EMPLOYEE_URL + '/position', requestData)
+  }
+
 }
 
 

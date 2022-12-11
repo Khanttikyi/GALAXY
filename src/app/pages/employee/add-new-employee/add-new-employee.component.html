@@ -65,7 +65,7 @@
                     <label class="col-4 form-label m-auto">Department<span class="text-danger">*</span></label>
 
                     <select formControlName="department" class="col-7 form-control form-control-sm" name="department">
-                      <option *ngFor="let role of departmentOptions" [value]="role.value">{{role.value}}
+                      <option *ngFor="let role of departmentOptions" [value]="role.department_name">{{role.department_name}}
                       </option>
                     </select>
                     <button class="col-1 plus-btn" type="button" (click)="addDepartment()"><i
@@ -77,7 +77,7 @@
                     <label class="col-4 form-label m-auto">Position<span class="text-danger">*</span></label>
 
                     <select formControlName="position" class="col-7 form-control form-control-sm" name="position">
-                      <option *ngFor="let role of positionOptions" [value]="role.value">{{role.value}}
+                      <option *ngFor="let role of positionOptions" [value]="role.position_name">{{role.position_name}}
                       </option>
                     </select>
                     <button class="col-1 plus-btn" type="button" (click)="addPosition()"><i

@@ -33,16 +33,16 @@ export class AddNewPositionComponent implements OnInit {
 
   prepareCreate() {
     this.newPosition = {
-      positionName: this.newPositionForm.value.positionName,
-      positionDescription: this.newPositionForm.value.positionDescription,
+      position_name: this.newPositionForm.value.positionName,
+      position_description: this.newPositionForm.value.positionDescription,
       
     }
   }
 
   save() {
     this.prepareCreate()
-    this.employeeService.save(this.newPosition).toPromise().then((res: any) => {
-      this.modal.dismiss({ data: res.data })
+    this.employeeService.addPosition(this.newPosition).toPromise().then((res: any) => {
+      this.modal.dismiss({ data: res })
     })
   }
 
