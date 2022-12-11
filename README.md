@@ -1,2 +1,2 @@
-# Liquor-Emperror
-Liquor-POS 
+# GALAXY
+GALAXY MYANMAR
