@@ -1,24 +1,31 @@
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { getFileReader } from 'src/app/core/get-file-reader';
+import { MY_FORMATS } from 'src/app/core/is-json';
 import { AlertService } from 'src/app/modules/loading-toast/alert-model/alert.service';
 import { AddNewDepartmentComponent } from '../add-new-department/add-new-department.component';
 import { AddNewPositionComponent } from '../add-new-position/add-new-position.component';
 import { EmployeeService } from '../employee.service';
-
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import * as moment from 'moment';
 @Component({
   selector: 'app-add-new-employee',
   templateUrl: './add-new-employee.component.html',
   styleUrls: ['./add-new-employee.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ]
 })
 export class AddNewEmployeeComponent implements OnInit {
 
   @ViewChild('selectedFile') selectedFile: ElementRef;
   pageStatus: string;
-  userId: number;
+  employeeID: number;
   avatar: any;
   detailFormGroup: FormGroup
   isCollapsedUser = false;
@@ -49,19 +56,21 @@ export class AddNewEmployeeComponent implements OnInit {
     private employeeService: EmployeeService,
     private modalService: NgbModal,
     private alertService: AlertService,
+    private cdf: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
     //this.getRoles();
+    this.loadForm()
     this.route.queryParams
       .subscribe(params => {
         console.log("Route QueryParams: ", params)
         this.pageStatus = params.pageStatus;
         console.log("Page Status: ", this.pageStatus)
         if (this.pageStatus == 'edit') {
-          this.userId = params.userId;
-          this.employeeService.getDetailById(this.userId).toPromise().then((res) => {
+          this.employeeID = params.employee_id;
+          this.employeeService.getDetailById(this.employeeID).toPromise().then((res) => {
             if (res) {
               console.log("Detail User: ", res)
               this.loadForm(res)
@@ -77,29 +86,34 @@ export class AddNewEmployeeComponent implements OnInit {
     console.log("User Detail, LoadForm: ", data)
     this.detailFormGroup = new FormGroup({
       // userId: new FormControl(data ? data.userId : 0),
-      profile: new FormControl(data ? data.profile : ''),
-      employeeName: new FormControl({ value: data ? data.loginId : '', disabled: this.pageStatus == 'edit' ? true : false }, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
-      department: new FormControl({ value: data ? data.department : '', disabled: this.pageStatus == 'edit' ? true : false }, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
-      position: new FormControl(data ? data.position : ''),
-      status: new FormControl(data ? data.useYn : 'Y'),
-      salary: new FormControl(data ? data.salary : ''),
-     
-      date: new FormControl(data ? data.date : 0),
-      employeeNo: new FormControl(data ? data.employeeNo : 0),
-      nrc: new FormControl(data ? data.nrc : 0),
-      fatherName: new FormControl(data ? data.fatherName : 0),
-      dob: new FormControl(data ? data.dob : 0),
-      gender: new FormControl(data ? data.gender : 0),
-      mobileNo: new FormControl(data ? data.mobileNo : ''),
-      email: new FormControl(data ? data.email : '', [Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-      address: new FormControl(data ? data.address : 0),
-      createdBy: new FormControl(data ? data.createdBy : 0),
+      profile: new FormControl(data ? data.employee_profile : ''),
+      employeeName: new FormControl( data ? data.employee_name : ''),
+      department: new FormControl( data ? data.employee_department : ''),
+      position: new FormControl(data ? data.employee_position : ''),
+      status: new FormControl(data?(data.employee_status):null),
+      salary: new FormControl(data ? data.employee_salary : ''),
+      date: new FormControl(data ? moment( data.employee_join_date) : null),
+      employeeNo: new FormControl(data ? data.employee_id :null),
+      nrc: new FormControl(data ? data.employee_nrc :null),
+      fatherName: new FormControl(data ? data.employee_father_name :null),
+      dob: new FormControl(data ? moment( data.employee_dob) :null),
+      gender: new FormControl(data ? data.employee_gender :null),
+      mobileNo: new FormControl(data ? data.employee_phone : ''),
+      email: new FormControl(data ? data.employee_email : '', [Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      address: new FormControl(data ? data.employee_address : null),
+      createdBy: new FormControl(data ? data.createdBy : null),
       createdDate: new FormControl(data ? data.createdAt : new Date()),
-      updatedBy: new FormControl(data ? data.updatedBy : 0),
+      updatedBy: new FormControl(data ? data.updatedBy : null),
       updatedDate: new FormControl(data ? data.updatedAt : new Date()),
     });
+    this.cdf.detectChanges()
   }
 
+  onChanges(): void {
+    this.detailFormGroup.valueChanges.subscribe(() => {
+      console.log(this.detailFormGroup.value)
+    });
+ }
   // getRoles() {
   //   this.roleService.getRoles('Y').toPromise().then(
   //     (res: any) => {
@@ -113,22 +127,22 @@ export class AddNewEmployeeComponent implements OnInit {
     })
   }
 
-  addDepartment(){
+  addDepartment() {
     const modalRef = this.modalService.open(AddNewDepartmentComponent, { size: 'md', backdrop: false });
     modalRef.result.then(() => { }, (res) => {
       if (res.data) {
         this.alertService.activate('This record was created.', 'Success Message');
-       // this.getRolesByPage(1)
+        // this.getRolesByPage(1)
       }
     }
     );
   }
-  addPosition(){
+  addPosition() {
     const modalRef = this.modalService.open(AddNewPositionComponent, { size: 'md', backdrop: false });
     modalRef.result.then(() => { }, (res) => {
       if (res.data) {
         this.alertService.activate('This record was created.', 'Success Message');
-       // this.getRolesByPage(1)
+        // this.getRolesByPage(1)
       }
     }
     );
@@ -136,38 +150,44 @@ export class AddNewEmployeeComponent implements OnInit {
   saveUser() {
     console.log("Save: ", this.detailFormGroup.value)
     let request = {
-      avatar: this.avatar ? this.avatar : null,
-      employeeNo: this.detailFormGroup.value.userNo,
-      employeeName: this.detailFormGroup.value.userName,
-      loginId: this.detailFormGroup.value.employeeName,
-      department: this.detailFormGroup.value.department,
-      email: this.detailFormGroup.value.email,
-      mobileNo: this.detailFormGroup.value.mobileNo,
-      positionId: this.detailFormGroup.value.positionId,
-      departmentId: this.detailFormGroup.value.departmentId,
-      reportToId: 1,
-      roleId: this.detailFormGroup.value.roleId,
-      useYn: this.detailFormGroup.value.status,
-      userId: this.pageStatus == 'create' ? 0 : this.detailFormGroup.value.userId,
+      // avatar: this.avatar ? this.avatar : null,
+      employee_id: Number(this.detailFormGroup.value.employeeNo),
+      employee_name:this.detailFormGroup.value.employeeName,
+      employee_position:this.detailFormGroup.value.position,
+      employee_department:this.detailFormGroup.value.department,
+      employee_salary:Number(this.detailFormGroup.value.salary),
+      employee_join_date:moment(this.detailFormGroup.value.date).format("MM-DD-YYYY"), 
+      employee_status:this.detailFormGroup.value.status,
+      employee_email:this.detailFormGroup.value.email,
+      employee_phone:this.detailFormGroup.value.mobileNo,
+      employee_nrc:this.detailFormGroup.value.nrc,
+      employee_dob:moment(this.detailFormGroup.value.dob).format("MM-DD-YYYY"), 
+      employee_gender:this.detailFormGroup.value.gender,
+      employee_father_name:this.detailFormGroup.value.fatherName,
+      employee_address:this.detailFormGroup.value.address,
     }
     console.log("Request data: ", request)
     if (this.pageStatus == 'create') {
       this.employeeService.save(request).toPromise().then((res) => {
         if (res) {
           console.log("Create: ", res)
-        //  this.alertService.activate('This record was created', 'Success Message');
+           this.alertService.activate('This record was created', 'Success Message');
+             this.location.back()
         }
       })
     } else {
-      delete request.department
-      this.employeeService.update(request).toPromise().then((res) => {
+      this.employeeService.update(request,request.employee_id).toPromise().then((res) => {
         if (res) {
           console.log("Update: ", res)
-         // this.alertService.activate('This record was updated', 'Success Message');
+          this.alertService.activate('This record was updated', 'Success Message');
+          this.location.back()
         }
       })
     }
-    this.location.back()
+  
+  }
+  clearDate(type){
+    this.detailFormGroup.controls[type].setValue(null)
   }
 
   cancel() {

@@ -24,6 +24,8 @@ $gray-700: 											#5E6278 !default;
 $gray-800: 											#3F4254 !default;
 $gray-900: 											#181C32 !default;
 
+$orange-100:                                        #efc674 !default;
+
 // Dark colors
 $dark:          									$gray-900 !default;
 $dark-75:          									$gray-800 !default; // Custom variable
@@ -547,7 +549,7 @@ $table-hover-bg:                					$gray-300 !default;
 $table-active-bg:               					$table-hover-bg !default;
 
 $table-border-color:            					$gray-200 !default;
-$table-head-bg:                 					$gray-100 !default;
+$table-head-bg:                 					$orange-100 !default;
 $table-head-color:              					$dark-75 !default;
 $table-head-font-size:             					1rem !default; // Custom variable
 $table-head-font-weight:           					600 !default; // Custom variable
@@ -559,7 +561,7 @@ $table-dark-hover-color:      						$table-dark-color !default;
 $table-dark-hover-bg:        						rgba($white, .075) !default;
 $table-dark-border-color:     						lighten($table-dark-bg, 7.5%) !default;
 
-$table-head-bg:                                     $gray-100 !default; // Custom variable
+$table-head-bg:                                     $orange-100 !default; // Custom variable
 $table-compact-head-font-size:                      0.9rem !default; // Custom variable
 $table-compact-head-color:                          $text-muted !default; // Custom variable
 $table-compact-head-text-transform:                 uppercase !default; // Custom variable

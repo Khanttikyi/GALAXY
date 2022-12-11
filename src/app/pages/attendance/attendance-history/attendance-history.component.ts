@@ -20,24 +20,20 @@ export class AttendanceHistoryComponent implements OnInit {
     // console.log(this.historyList);
     // this.getHistory()
   }
-  ngAfterViewInit(){
-    
+  ngAfterViewInit() {
+
   }
   ngAfterContentChecked(): void {
     this.getHistory()
     this.cdf.detectChanges();
   }
   getHistory() {
-    let data = [{
-      checkIn: '9:00 AM',
-      checkOut: '5:00 AM',
-      isLate: 'No'
-    },
-    {
-      checkIn: '9:00 AM',
-      checkOut: '5:00 AM',
-      isLate: 'No'
-    }]
+    let data = []
+    for (let i = 2; i < 30; i++) {
+      this.historyList[i].checkIn = "9:0" + i + " AM"
+      this.historyList[i].checkOut = "5:0" + i + " AM"
+      this.historyList[i].isLate = "No"
+    }
     this.historyList = data
   }
   actionBtn(event) {

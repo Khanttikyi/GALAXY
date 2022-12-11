@@ -14,7 +14,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import {MatRadioModule} from '@angular/material/radio';
 import { AddNewDepartmentComponent } from './add-new-department/add-new-department.component';
 import { AddNewPositionComponent } from './add-new-position/add-new-position.component';
-
+import { NgxCurrencyModule } from 'ngx-currency';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   declarations: [EmployeePage, AddNewEmployeeComponent,AddNewDepartmentComponent,AddNewPositionComponent],
   imports: [
@@ -24,6 +25,8 @@ import { AddNewPositionComponent } from './add-new-position/add-new-position.com
     ReactiveFormsModule,
     NgbModule,
     NgSelectModule,
+    NgxCurrencyModule,
+    MatDatepickerModule,
     MatRadioModule,
     EmployeePageRoutingModule,
     RouterModule.forChild([

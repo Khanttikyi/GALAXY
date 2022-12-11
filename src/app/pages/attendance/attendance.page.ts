@@ -150,7 +150,7 @@ export class AttendancePage implements OnInit, OnDestroy {
     }
   }
   viewHistory(){
-    const modalRef = this.modalService.open(AttendanceHistoryComponent, { size: 'lg', backdrop: false });
+    const modalRef = this.modalService.open(AttendanceHistoryComponent, { size: 'xl', backdrop: true });
     modalRef.componentInstance.type = 'modal'
     modalRef.result.then(() => { }, (res) => {
       if (res) {

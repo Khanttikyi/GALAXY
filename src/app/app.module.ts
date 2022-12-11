@@ -27,6 +27,9 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { CRUDTableModule } from './_metronic/shared/crud-table';
 import { AddUserRoleComponent } from './pages/user-role/add-user-role/add-user-role.component';
 import { AddUserComponent } from './pages/user-registration/add-user/add-user.component';
+import { AlertModelModule } from './modules/loading-toast/alert-model/alert-model.module';
+import { KBZLoadingModule } from './modules/loading-toast/loading/loading.module';
+import { NgxCurrencyModule } from "ngx-currency";
 // #fake-start#
 // #fake-end#
 function appInitializer(authService: AuthService) {
@@ -47,6 +50,8 @@ function appInitializer(authService: AuthService) {
     SplashScreenModule,
     IonicModule,
     ReactiveFormsModule,
+    AlertModelModule,
+    KBZLoadingModule,
     HttpClientModule,
     FormsModule,
     HighlightModule,
@@ -58,7 +63,8 @@ function appInitializer(authService: AuthService) {
     MatTooltipModule,
     MatSelectModule,
     NgSelectModule,
-    CRUDTableModule
+    CRUDTableModule,
+    NgxCurrencyModule
   ],
   providers: [
     {

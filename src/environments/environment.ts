@@ -9,9 +9,8 @@ export const environment = {
   isMockEnabled: false,
   // apiUrl: 'http://104.248.152.205:8082/sale/api/v1',
  // apiUrl:'http://192.168.100.56:3200/api'
-  apiUrl:'localhost:3040/api'
+  apiUrl:'https://galaxy-mnu579fyk-khanttikyi.vercel.app'
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

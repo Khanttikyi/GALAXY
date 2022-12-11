@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   getAll(){
     this.dashboardService.getALl().toPromise().then((res)=>{
-      console.log(res);
+      console.log("USER==>",res);
       
     })
   }

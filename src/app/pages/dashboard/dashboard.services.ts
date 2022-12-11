@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { BizOperationService } from "src/app/core/biz.operation.service";
 import { environment } from "src/environments/environment";
 
-const API_DASHBOARD = `${environment.apiUrl}/itemview/getDepartmentList`;
+const API_DASHBOARD = `${environment.apiUrl}/users`;
 
 @Injectable({
     providedIn: 'root'
