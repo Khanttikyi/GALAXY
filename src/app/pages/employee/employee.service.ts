@@ -15,7 +15,9 @@ export class EmployeeService {
   getEmployee() {
     return this.httpClient.get(API_EMPLOYEE_URL + '/getEmployee')
   }
-
+  searchEmployee(searchObj) {
+    return this.httpClient.get(API_EMPLOYEE_URL + '/employee' + '/searchEmployee' + "/" + (searchObj.employee_status || null) + "/" + (searchObj.employee_name || null) + "/" + (searchObj.employee_department || null))
+  }
   getDetailById(employee_id: any) {
     console.log("employee_id", employee_id);
 

@@ -5,7 +5,7 @@
           <h3 class="card-label">Employee Management</h3>
       </div>
       <div class="card-toolbar mr-1">
-          <button type="button" class="btn btnSearch" (click)="getEmployeeList()">
+          <button type="button" class="btn btnSearch" (click)="SearchEmployee()">
               <span class="flaticon2-search m-1"></span>Search
           </button>
           <button type="button" class="btn btnCancel ml-4" (click)="cancel()">
@@ -21,23 +21,23 @@
           <div class="row m-1">
               <div class="col-4">
                   <div class="row">
-                      <label class="col-6 form-label m-auto">Employee Type</label>
-                      <input type="text" class="col-6 form-control form-control-sm" name="searchCodeType"
-                          placeholder="Employee Type" autocomplete="off" formControlName="searchCodeType" (keyup.enter)="getEmployeeList()"/>
+                      <label class="col-6 form-label m-auto">Employee Status</label>
+                      <input type="text" class="col-6 form-control form-control-sm" name="employee_status"
+                          placeholder="Employee Status" autocomplete="off" formControlName="employee_status" (keyup.enter)="SearchEmployee()"/>
                   </div>
               </div>
               <div class="col-4">
                   <div class="row">
                       <label class="offset-1 col-5 form-label m-auto">Employee Name</label>
-                      <input type="text" class="col-6 form-control form-control-sm" name="searchCodeName"
-                          placeholder="Employee Name" autocomplete="off" formControlName="searchCodeName" (keyup.enter)="getEmployeeList()"/>
+                      <input type="text" class="col-6 form-control form-control-sm" name="employee_name"
+                          placeholder="Employee Name" autocomplete="off" formControlName="employee_name" (keyup.enter)="SearchEmployee()"/>
                   </div>
               </div>
               <div class="col-4">
                   <div class="row">
                       <label class="offset-1 col-5 form-label m-auto">Department Name</label>
-                      <input type="text" class="col-6 form-control form-control-sm" name="searchParentCodeType"
-                          placeholder="Department Name" autocomplete="off" formControlName="searchParentCodeType" (keyup.enter)="getEmployeeList()"/>
+                      <input type="text" class="col-6 form-control form-control-sm" name="employee_department"
+                          placeholder="Department Name" autocomplete="off" formControlName="employee_department" (keyup.enter)="SearchEmployee()"/>
                   </div>
               </div>
           </div>

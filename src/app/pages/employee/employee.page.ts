@@ -34,9 +34,9 @@ export class EmployeePage implements OnInit {
 
   loadForm(data?: any) {
     this.searchGroup = new FormGroup({
-      searchCodeType: new FormControl(data ? data.searchCodeType : ''),
-      searchCodeName: new FormControl(data ? data.searchCodeName : ''),
-      searchParentCodeType: new FormControl(data ? data.searchParentCodeType : ''),
+      employee_status: new FormControl(data ? data.employee_status : ''),
+      employee_name: new FormControl(data ? data.employee_name : ''),
+      employee_department: new FormControl(data ? data.employee_department : ''),
     });
   }
   getEmployeeList() {
@@ -48,6 +48,14 @@ export class EmployeePage implements OnInit {
 
 
   }
+  
+  SearchEmployee() {
+    this.employeeService.searchEmployee(this.searchGroup.value).toPromise().then(((res: any) => {
+      console.log(res);
+      this.employeeList = res
+      this.cdf.detectChanges()
+    }))
+  }
   cancel() {
 
   }
@@ -57,9 +65,9 @@ export class EmployeePage implements OnInit {
   edit(data?) {
     this.navigateToDetail(data, 'edit')
   }
-  delete(id){
-    this.employeeService.delete(id).toPromise().then(res=>{
-      if(res){
+  delete(id) {
+    this.employeeService.delete(id).toPromise().then(res => {
+      if (res) {
         this.getEmployeeList()
       }
     })
