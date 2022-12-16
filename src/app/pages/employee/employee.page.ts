@@ -50,8 +50,11 @@ export class EmployeePage implements OnInit {
   }
   
   SearchEmployee() {
-    this.employeeService.searchEmployee(this.searchGroup.value).toPromise().then(((res: any) => {
-      console.log(res);
+    console.log("empname", this.searchGroup.value.employee_name)
+   // let newEmp = 
+    // this.employeeService.searchEmployee(this.searchGroup.value.employee_status,this.searchGroup.value.employee_name,this.searchGroup.value.employee_department).toPromise().then(((res: any) => {
+    this.employeeService.searchEmployee(this.searchGroup.value.employee_name,this.searchGroup.value.employee_department,this.searchGroup.value.employee_status).toPromise().then(((res: any) => {
+    console.log("employeeService", res);
       this.employeeList = res
       this.cdf.detectChanges()
     }))
