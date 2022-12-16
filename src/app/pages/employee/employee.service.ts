@@ -22,12 +22,15 @@ export class EmployeeService {
     if (name) {
       url = url + 'employee_name=' + name + '&'
     }
+    
     if (department) {
       url = url + 'employee_department=' + department + '&'
     }
+   
     if (status) {
-      url = url + 'employee_status=' + status  
+      url = url + 'employee_status=' + status 
     }
+    
     console.log("ur", url)
     return this.httpClient.get(API_EMPLOYEE_URL  + url )
    // return this.httpClient.get(API_EMPLOYEE_URL + '/employee' + '/searchEmployee' + "/" + (searchObj.employee_status || null) + "/" + (searchObj.employee_name || null) + "/" + (searchObj.employee_department || null))
