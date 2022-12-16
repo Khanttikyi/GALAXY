@@ -9,8 +9,8 @@ export const environment = {
   isMockEnabled: false,
   // apiUrl: 'http://104.248.152.205:8082/sale/api/v1',
  // apiUrl:'http://192.168.100.56:3200/api'
-  apiUrl:'http://localhost:3000'
-  // apiUrl:'https://galaxy-api.vercel.app'
+  // apiUrl:'http://localhost:3000'
+  apiUrl:'https://galaxy-api.vercel.app'
 };
 /*
  * For easier debugging in development mode, you can import the following file
