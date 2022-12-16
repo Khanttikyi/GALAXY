@@ -4,13 +4,12 @@
     <div
       [ngStyle]="{ 'max-height': '30vh', position: 'relative' }"
       class="scroll"
-      perfectScrollbar
     >
       <div class="quick-search-result">
         <!-- Has Result -->
         <ng-container *ngIf="data.length > 0">
           <ng-container *ngFor="let item of data">
-            <ng-container
+            <!-- <ng-container
               *ngIf="item.type === 0"
               [ngTemplateOutlet]="documentsTemplate"
               [ngTemplateOutletContext]="{ item: item }"
@@ -24,7 +23,7 @@
               *ngIf="item.type === 2"
               [ngTemplateOutlet]="filesTemplate"
               [ngTemplateOutletContext]="{ item: item }"
-            ></ng-container>
+            ></ng-container> -->
           </ng-container>
         </ng-container>
         <!-- No Result -->

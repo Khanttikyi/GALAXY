@@ -51,6 +51,9 @@ export class UserRolePage implements OnInit {
       }
     })
   }
+  addNewCategory(){
+    
+  }
   actionBtn(event) {
     // console.log(event);
     if (event.cmd == 'edit') {
